@@ -9,31 +9,29 @@ package loginandsignup;
  * @author byaku
  */
 class User {
-    private float gradeid;
-    private int quarter, math, science, english, hekasi, he, pe; 
-    private String studentid, name;
+   
+    private int quarter, math, science, english, hekasi, homeeconomics, pe; 
+    private String id, name;
     
-    public User (float gradeid, int quarter, String studentid, String name, int math, int science, int english, int hekasi, int he, int pe){
-        this.gradeid = gradeid;
+    public User (int quarter, String id, String name, int math, int science, int english, int hekasi, int homeeconomics, int pe){
+       
         this.quarter = quarter;
-        this.studentid = studentid;
+        this.id = id;
         this.name = name;
         this.math = math;
         this.science = science;
         this.english = english;
         this.hekasi = hekasi;
-        this.he = he;
+        this.homeeconomics = homeeconomics;
         this.pe = pe;
         
     } 
-        public float getgradeid() {
-        return gradeid;
-        }
+       
         public int getquarter() {
         return quarter;
         }
         public String getstudentid() {
-        return studentid;
+        return id;
         }
         public String getname() {
         return name;
@@ -50,8 +48,8 @@ class User {
         public int gethekasi() {
         return hekasi;
         }
-        public int gethe() {
-        return he;
+        public int gethomeeconomics() {
+        return homeeconomics;
         }
         public int getpe() {
         return pe;

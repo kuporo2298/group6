@@ -37,7 +37,7 @@ public class teacherhome extends javax.swing.JFrame {
         public ArrayList<User> userList() {
             ArrayList<User> usersList = new ArrayList();
         try{
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
            
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/users","root","kpaul57285.");
             String query1="SELECT * FROM grading";
@@ -45,7 +45,7 @@ public class teacherhome extends javax.swing.JFrame {
             ResultSet rs= st.executeQuery(query1);
             User user;
                 while(rs.next()){
-                    user = new User(rs.getFloat("gradeid"), rs.getInt("quarter"), rs.getString("studentid"), rs.getString("name"), rs.getInt("math"), rs.getInt("science"), rs.getInt("english"), rs.getInt("hekasi"), rs.getInt("he"), rs.getInt("pe"));
+                    user = new User(rs.getInt("quarter"), rs.getString("id"), rs.getString("name"), rs.getInt("math"), rs.getInt("science"), rs.getInt("english"), rs.getInt("hekasi"), rs.getInt("homeeconomics"), rs.getInt("pe"));
                     usersList.add(user);
                 }
         }
@@ -62,16 +62,16 @@ public class teacherhome extends javax.swing.JFrame {
             
             Object [] row = new Object[10];
             for (int i=0;i<list.size();i++){
-                row[0]=list.get(i).getgradeid();
-                row [1]=list.get(i).getquarter();
-                row[2]=list.get(i).getstudentid();
-                row[3]=list.get(i).getname();
-                row[4]=list.get(i).getmath();
-                row[5]=list.get(i).getscience();
-                row[6]=list.get(i).getenglish();
-                row[7]=list.get(i).gethekasi();
-                row[8]=list.get(i).gethe();
-                row[9]=list.get(i).getpe();
+                
+                row [0]=list.get(i).getquarter();
+                row[1]=list.get(i).getstudentid();
+                row[2]=list.get(i).getname();
+                row[3]=list.get(i).getmath();
+                row[4]=list.get(i).getscience();
+                row[5]=list.get(i).getenglish();
+                row[6]=list.get(i).gethekasi();
+                row[7]=list.get(i).gethomeeconomics();
+                row[8]=list.get(i).getpe();
                 model.addRow(row);
             }
         }
@@ -253,11 +253,11 @@ public class teacherhome extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Grade ID", "Quarter", "Student ID", "Name", "Math", "Science", "English", "Hekasi", "H.E", "P.E"
+                "Quarter", "Student ID", "Name", "Math", "Science", "English", "Hekasi", "H.E", "P.E"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -464,7 +464,7 @@ public class teacherhome extends javax.swing.JFrame {
 
     try (Connection con = DriverManager.getConnection(SUrl, SUser, SPass)) {
       Statement st = con.createStatement();
-      String query = "INSERT INTO grading( id, quarter, math, science, english, hekasi, homeeconomics ,pe) VALUES( '"  + gid + "','" + quart + "', '" + math2 + "', '" + science2 + "', '" + english2 + "', '" + hekasi2 + "', '" + he2 + "', '" + pe2  + "')";
+      String query = "INSERT INTO grading( id,name, quarter, math, science, english, hekasi, homeeconomics ,pe) VALUES( '"  + gid + "','"  + name + "','" + quart + "', '" + math2 + "', '" + science2 + "', '" + english2 + "', '" + hekasi2 + "', '" + he2 + "', '" + pe2  + "')";
         boolean execute = st.execute(query);
       JOptionPane.showMessageDialog(null, "Grade entered successfully!");
         
